@@ -1,80 +1,90 @@
-# Ex4 Evaluation of prefix expression
-## DATE:22/11/2025
+# Ex4 You are given a Java program that performs matrix addition. If Matrix A has all odd numbers and Matrix B has all even numbers of the same dimension, what will be the nature (even/odd/mixed) of the resulting matrix?
+## DATE: 18.11.2025
 ## AIM:
-To write a C function to evaluate the given prefix expression using stack and print the output of the given prefix expression from the stack inside the function . 
+To write a java function to evaluate weather the given Matrix A has all odd numbers and Matrix B has all even numbers of the same dimension and find the nature of resultant matrrix.
 
 ## Algorithm
-1.Start
-
-2.Initialize an empty stack s with a variable top for tracking the stack index.
-
-3.Define a push() function toa add an element to the stack.
-
-4.Define a pop() function to remove and return the top element from the stack.
-
-5.In evalprefix(), loop through the given prefix expression from right to left.
-
-6.For each character, if it’s an operator (+, *), pop two operands from the stack, perform the operation, and push the result.
-
-7.If it's a digit, convert it to an integer and push it onto the stack; finally, print the result after the loop ends.
-
-8.End
+1. Start.
+2. Read Matrix A and Matrix B of the same dimension.
+3. Check if all elements in Matrix A are odd.
+4. Check if all elements in Matrix B are even.
+5. Display whether the matrices satisfy the condition and determine the nature of the resultant matrix, then stop.
 ## Program:
-
-Program to evaluate the given prefix expression
-## Developed by: NARMADHA S
-## RegisterNumber:  212223220065
-
 ```
-#include<stdio.h> 
-#include<string.h> 
-#include<ctype.h>
-int s[50]; 
-int top=0;
-void push(int ch)
-{
-top++; 
-s[top]=ch;
+/*
+Program to ind the nature of resultant matrrix.
+Developed by: NARMADHA S
+RegisterNumber: 212223220065
+*/
+```
+```
+import java.util.Scanner;
+public class MatrixCheck {
+    public static boolean allOdd(int[][] A, int rows, int cols) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (A[i][j] % 2 == 0) {  
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static boolean allEven(int[][] B, int rows, int cols) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (B[i][j] % 2 != 0) {  
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of rows: ");
+        int rows = sc.nextInt();
+        System.out.print("Enter number of columns: ");
+        int cols = sc.nextInt();
+
+        int[][] A = new int[rows][cols];
+        int[][] B = new int[rows][cols];
+
+        System.out.println("Enter Matrix A:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                A[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Enter Matrix B:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                B[i][j] = sc.nextInt();
+            }
+        }
+
+        boolean isAodd = allOdd(A, rows, cols);
+        boolean isBeven = allEven(B, rows, cols);
+
+        System.out.println("\n--- Result ---");
+
+        if (isAodd && isBeven) {
+            System.out.println("Matrix A has all odd numbers.");
+            System.out.println("Matrix B has all even numbers.");
+            System.out.println("Resultant Matrix Nature: VALID (Odd + Even combination).");
+        } else {
+            System.out.println("Matrices do NOT satisfy the required conditions.");
+            System.out.println("Resultant Matrix Nature: INVALID.");
+        }
+    }
 }
-int pop()
-{
-int ch; 
-ch=s[top]; 
-top=top-1; 
-return(ch);
-}
-void evalprefix(char p[50])
-{
-int a,b,c,i;
-for(i=strlen(p)-1;i>=0;i--)
-{
-if(p[i]=='+')
-{
-a=pop();
-b=pop(); 
-c=a+b; 
-push(c);
-}
-else if(p[i]=='*')
-{
-a=pop();
-b=pop(); 
-c=a*b; 
-push(c);
-}
-else
-{
-push(p[i]-48);
-}
-}
-printf("%d",pop());
-}
+
 ```
 
 ## Output:
-<img width="281" height="162" alt="437310058-98f07047-97ea-4fc9-8489-3a53522363c9" src="https://github.com/user-attachments/assets/0420cc02-4bb7-41c5-8361-a1ad5b29096f" />
-
+<img width="395" height="277" alt="image" src="https://github.com/user-attachments/assets/54ed1857-3b03-45c6-8116-2e4bf948d72d" />
 
 
 ## Result:
-Thus, the C program to evaluate the prefix expression using stack and print the output of the given prefix expression from the stack inside the function is implemented successfully.
+Thus, the java program to evaluate weather the given Matrix A has all odd numbers and Matrix B has all even numbers of the same dimension and find the nature of resultant matrrix is implemented successfully.
